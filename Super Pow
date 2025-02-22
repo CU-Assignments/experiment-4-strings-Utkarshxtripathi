@@ -1,0 +1,24 @@
+class Solution {
+    private static final int MOD = 1337;
+    
+    public int superPow(int a, int[] b) {
+        int result = 1;
+        a %= MOD; 
+        
+        for (int digit : b) {
+            result = (modPower(result, 10, MOD) * modPower(a, digit, MOD)) % MOD;
+        }
+        return result;
+    }
+
+    private int modPower(int x, int y, int mod) {
+        int res = 1;
+        x %= mod;
+        while (y > 0) {
+            if (y % 2 == 1) res = (res * x) % mod;
+            x = (x * x) % mod;
+            y /= 2;
+        }
+        return res;
+    }
+}
